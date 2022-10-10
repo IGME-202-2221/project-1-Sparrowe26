@@ -6,10 +6,13 @@ using UnityEngine.InputSystem;
 public class Vehicle : MonoBehaviour
 {
     [SerializeField]
+    GameObject bullet;
+
+    [SerializeField]
     float speed = 1f;
 
     Vector3 vehiclePosition = Vector3.zero;
-    Vector3 direction = Vector3.right;
+    Vector3 direction = Vector3.zero;
     Vector3 velocity = Vector3.zero;
 
     Camera mainCam;
@@ -59,5 +62,21 @@ public class Vehicle : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.back, direction);
         }
+    }
+
+    public void Fire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameObject temp;
+
+            temp = Instantiate(bullet, vehiclePosition, Quaternion.identity, transform);
+            GameObject.Find("CollisionManager").GetComponent<CollisionManager>().bullets.Add(temp);
+        }
+    }
+
+    public void EnemyCollision()
+    {
+        //health depletion here
     }
 }
