@@ -36,7 +36,8 @@ It sure is hard work being a Roomba. But you're no ordinary Roomba! Get through 
 
 ## Sources
 
--   All assets created by me!
+-   All game assets created by me!
+-   Background: https://pixabay.com/illustrations/texture-wood-planks-1943836/
 
 ## Known Issues
 
