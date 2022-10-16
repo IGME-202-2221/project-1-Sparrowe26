@@ -11,8 +11,8 @@
 
 -   Camera Orientation: Top-Down
 -   Camera Movement: Fixed
--   Player Health: Lives (3 hearts)
--   End Condition: Survive until the end of the wave
+-   Player Health: Lives (5 hearts)
+-   End Condition: Endless until you run out of lives
 -   Scoring: Number of collectibles collected
 
 ### Game Description
@@ -32,6 +32,7 @@ It sure is hard work being a Roomba. But you're no ordinary Roomba! Get through 
 
 - Trash collectibles that count toward the point total
 - Shooting enemies scares them off and causes them to drop trash
+- Striped rats run faster
 - You get to play as a roomba!
 
 ## Sources
@@ -41,7 +42,7 @@ It sure is hard work being a Roomba. But you're no ordinary Roomba! Get through 
 
 ## Known Issues
 
-_List any errors, lack of error checking, or specific information that I need to know to run your program_
+There are a few errors that pop up in the console but none of them seem to affect the game's performance.
 
 ### Requirements not completed
 
