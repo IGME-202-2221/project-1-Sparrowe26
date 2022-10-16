@@ -54,7 +54,7 @@ public class SpawnManager : MonoBehaviour
         spawnPoint.x = Random.Range(minSpawnPoint.x, maxSpawnPoint.x);
         spawnPoint.y = Random.Range(minSpawnPoint.y, maxSpawnPoint.y);
 
-        newCreature = Instantiate<GameObject>(PickRandomCreature());
+        newCreature = Instantiate(PickRandomCreature(), spawnPoint, Quaternion.identity);
 
         return newCreature;
     }
@@ -89,18 +89,18 @@ public class SpawnManager : MonoBehaviour
         //Pick random #
         float randVal = Random.Range(0f, 1f);
 
-        //25% chance of each rat color besides brown
-        //brown
+        //spawn based on % likely
+        //brown 50%
         if (randVal < .5)
         {
             pickedCreature = prefabs[0];
         }
-        //gray
-        else if (randVal < .75)
+        //gray 30%
+        else if (randVal < .80)
         {
             pickedCreature = prefabs[1];
         }
-        //black
+        //black 20% (these ones are faster)
         else
         {
             pickedCreature = prefabs[2];

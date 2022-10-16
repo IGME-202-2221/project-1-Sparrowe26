@@ -12,6 +12,7 @@ public class CollisionManager : MonoBehaviour
     GameObject vehicle;
 
     public List<GameObject> bullets = new List<GameObject>();
+    public List<GameObject> trash = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,10 @@ public class CollisionManager : MonoBehaviour
     {
         CircleDetection();
         HitDetection();
+        TrashCollection();
 
         BulletCleanUp();
+        CollectibleCleanUp();
     }
 
     private void CircleDetection()
@@ -40,7 +43,7 @@ public class CollisionManager : MonoBehaviour
                 collidables.Remove(collidables[i]);
                 i--;
 
-                vehicle.GetComponent<Enemy>().EnemyCollision();
+                vehicle.GetComponent<Vehicle>().EnemyCollision();
             }
         }
     }
@@ -63,6 +66,22 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    private void TrashCollection()
+    {
+        //using vehicle, check for collisions with collidable objects
+        for (int i = 0; i < trash.Count; i++)
+        {
+
+            //if there's a collision and the collectible is active, call collision methods
+            if (GetComponent<CollisionDetection>().CollectibleCollision(vehicle, trash[i]) 
+                && trash[i].GetComponent<Collectible>().isActive)
+            {
+                vehicle.GetComponent<Vehicle>().PickUp();
+                trash[i].GetComponent<Collectible>().PickedUp();
+            }
+        }
+    }
+
     public void BulletCleanUp()
     {
         //clean up any out of bounds bullets
@@ -72,6 +91,20 @@ public class CollisionManager : MonoBehaviour
             {
                 Destroy(bullets[i]);
                 bullets.Remove(bullets[i]);
+                i--;
+            }
+        }
+    }
+
+    public void CollectibleCleanUp()
+    {
+        //clean up any out of bounds bullets
+        for (int i = 0; i < trash.Count; i++)
+        {
+            if (trash[i].GetComponent<SpriteRenderer>().sprite == null)
+            {
+                Destroy(trash[i]);
+                trash.Remove(trash[i]);
                 i--;
             }
         }

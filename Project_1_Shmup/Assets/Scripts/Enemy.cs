@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            speed += .5f;
+            speed = 8f;
             if (fleeUp)
             {
                 enemyPosition.y -= velocity.x;
@@ -100,6 +100,11 @@ public class Enemy : MonoBehaviour
         else
         {
             fleeUp = false;
+        }
+
+        if (transform.position.x <= 9)
+        {
+            GameObject.Find("CollectibleManager").GetComponent<CollectibleManager>().SpawnTrash(transform.position);
         }
 
         runAway = true;

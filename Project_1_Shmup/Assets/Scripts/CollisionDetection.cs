@@ -75,4 +75,34 @@ public class CollisionDetection : MonoBehaviour
 
 
     }
+
+    public bool CollectibleCollision(GameObject vehicle, GameObject collectible)
+    {
+        //find the radii of the bounding circles using sprite dimensions
+        float vehicleRadius = 75f * 1.5f / 100f;
+        float collidableRadius = 5f / 100f;
+
+        //calculate the safe distance between objects squared
+        float safeDistance = (vehicleRadius + collidableRadius);
+
+        //calculate the current distance between objects squared
+        float distance =
+           Mathf.Pow(vehicle.GetComponent<SpriteRenderer>().bounds.center.x
+           - collectible.GetComponent<SpriteRenderer>().bounds.center.x, 2)
+           +
+           Mathf.Pow(vehicle.GetComponent<SpriteRenderer>().bounds.center.y
+           - collectible.GetComponent<SpriteRenderer>().bounds.center.y, 2);
+
+        //compare the two distances
+        if (Mathf.Sqrt(distance) < safeDistance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+
+    }
 }
